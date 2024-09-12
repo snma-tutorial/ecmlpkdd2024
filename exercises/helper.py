@@ -11,6 +11,24 @@ from netin.utils import io
 from netin.utils import constants
 
 def get_title(df: pd.DataFrame, model_name: str, f_m: float, h_M: float, h_m: float) -> str:
+    """
+    Returns the name of the model including its parameters f_m, h_m, and h_M
+
+    Parameters
+    ----------
+    df: pandas.DataFrame 
+        where rows represent nodes, and columns their respective centrality scores
+
+    model_name: str
+        original model name (without parameters)
+
+    f_m, h_m, h_M: float, float, float
+        the model parameters to add in the title
+
+    Returns
+    -------
+    title: str
+    """
     g = [r"f$_{m}$=<fm>".replace("<fm>", f"{f_m}")]
     if h_M == h_m:
         s = r"h$_{M}$=h$_{m}$=<h>".replace("<h>", f"{h_M}")
@@ -20,6 +38,21 @@ def get_title(df: pd.DataFrame, model_name: str, f_m: float, h_M: float, h_m: fl
     return f"{model_name}\n{', '.join(g)}"
 
 def get_edge_type_counts(graph:Graph, fraction:bool=False):
+    """
+    Returns the counts per edge type, e.g., How many edges between the minority and majority group (mM).
+
+    Parameters
+    ----------
+    data: netin.models.Graph or List[netin.models.Graph] or Set[netin.models.Graph]
+        a single graph or a list of graphs
+
+    kwargs: dict
+        width_bar, figsize, loc, nc_legend
+
+    Returns
+    -------
+    counts: collections.Counter
+    """
     edges = []
     for source, target in graph.edges():
         sc = graph.get_node_class(constants.CLASS_ATTRIBUTE).get_class_values()[source]
@@ -40,8 +73,8 @@ def plot_edge_type_counts(data: Union[Model, list[Model], set[Model]], fn=None, 
 
     Parameters
     ----------
-    data: netin.Graph or List[netin.Graph] or Set[netin.Graph]
-        a single graph or a list of graphs
+    data: netin.models.Model or List[netin.models.Model] or Set[netin.models.Model]
+        a single model_graph or a list of model_graphs
 
     kwargs: dict
         width_bar, figsize, loc, nc_legend
