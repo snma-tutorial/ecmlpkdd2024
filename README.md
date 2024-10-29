@@ -1,2 +1,4 @@
 # Synthetic Networked Data: Modeling Social-Graph Theories, and Applications
-Tutorial material (to be) presented at the ECML-PKDD Conference 2024, Vilnius, Lithuania
+Tutorial material presented at the ECML-PKDD Conference 2024, Vilnius, Lithuania
+
+Tutorial website: [https://bit.ly/snma-2024](https://bit.ly/snma-2024)
